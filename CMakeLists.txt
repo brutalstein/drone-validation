@@ -8,7 +8,11 @@ option(SENTINEL_BUILD_TESTS "Build SENTINEL-TWIN tests" ON)
 option(SENTINEL_BUILD_EXAMPLES "Build SENTINEL-TWIN examples" ON)
 option(SENTINEL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
-add_library(sentinel_core src/core/engine.cpp)
+add_library(sentinel_core
+  src/core/engine.cpp
+  src/search/bisection.cpp
+  src/evidence/json.cpp
+)
 add_library(sentinel::core ALIAS sentinel_core)
 set_target_properties(sentinel_core PROPERTIES EXPORT_NAME core)
 
@@ -40,9 +44,14 @@ endif()
 
 if(SENTINEL_BUILD_TESTS)
   enable_testing()
+
   add_executable(sentinel-core-tests tests/test_engine.cpp)
   target_link_libraries(sentinel-core-tests PRIVATE sentinel::core)
   add_test(NAME sentinel-core-tests COMMAND sentinel-core-tests)
+
+  add_executable(sentinel-search-evidence-tests tests/test_search_evidence.cpp)
+  target_link_libraries(sentinel-search-evidence-tests PRIVATE sentinel::core)
+  add_test(NAME sentinel-search-evidence-tests COMMAND sentinel-search-evidence-tests)
 endif()
 
 install(TARGETS sentinel_core
