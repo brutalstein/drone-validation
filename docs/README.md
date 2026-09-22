@@ -33,6 +33,8 @@ This directory is the engineering source of truth. Files are numbered to give hu
 - 28-data-governance.md — evidence retention, export and data classes
 - 29-risk-register.md — long-lived architecture risks and controls
 - 30-release-gates.md — engineering promotion criteria
+- 31-implementation-status.md — implemented vs planned capability matrix
+- 32-reference-vertical-slice.md — first complete PX4/Gazebo/ROS 2 validation path specification
 - adr/ — durable architecture decisions
 - reference/sources.md — primary public sources checked for the baseline
 
