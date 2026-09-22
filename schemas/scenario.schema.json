@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinel-twin.dev/schema/scenario/1-0",
+  "title": "SENTINEL-TWIN Scenario",
+  "type": "object",
+  "required": ["schema_version", "id", "seed", "clock", "system", "faults", "assertions"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "minLength": 3},
+    "name": {"type": "string"},
+    "seed": {"type": "integer", "minimum": 0},
+    "clock": {
+      "type": "object",
+      "required": ["duration_s", "step_s"],
+      "properties": {
+        "duration_s": {"type": "number", "exclusiveMinimum": 0},
+        "step_s": {"type": "number", "exclusiveMinimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "system": {
+      "type": "object",
+      "required": ["adapter"],
+      "properties": {"adapter": {"type": "string"}},
+      "additionalProperties": true
+    },
+    "faults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "target", "start_time_s", "duration_s"],
+        "properties": {
+          "id": {"type": "string"},
+          "kind": {"enum": ["sensor_dropout", "sensor_bias", "sensor_latency", "packet_loss", "network_latency", "process_pause", "resource_pressure", "custom"]},
+          "target": {"type": "string"},
+          "start_time_s": {"type": "number", "minimum": 0},
+          "duration_s": {"type": "number", "minimum": 0},
+          "parameters": {"type": "object", "additionalProperties": {"type": "number"}}
+        }
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "comparator", "threshold", "policy"],
+        "properties": {
+          "id": {"type": "string"},
+          "metric": {"type": "string"},
+          "comparator": {"enum": ["<", "<=", ">", ">=", "=="]},
+          "threshold": {"type": "number"},
+          "policy": {"enum": ["all_samples", "final_sample"]}
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

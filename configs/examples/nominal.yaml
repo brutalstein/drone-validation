@@ -1,0 +1,16 @@
+schema_version: "1.0"
+id: "example.nominal-navigation.v1"
+name: "Nominal navigation validation"
+seed: 42
+clock:
+  duration_s: 30.0
+  step_s: 0.01
+system:
+  adapter: "future.px4-gazebo"
+faults: []
+assertions:
+  - id: "REQ-NAV-001"
+    metric: "navigation.position_error_m"
+    comparator: "<="
+    threshold: 1.0
+    policy: "all_samples"

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinel-twin.dev/schema/evidence/1-0",
+  "title": "SENTINEL-TWIN Evidence Manifest",
+  "type": "object",
+  "required": ["schema_version", "run_id", "scenario_id", "seed", "status", "provenance", "artifacts"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "run_id": {"type": "string"},
+    "scenario_id": {"type": "string"},
+    "seed": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["passed", "failed", "invalid", "aborted"]},
+    "provenance": {
+      "type": "object",
+      "required": ["git_commit", "runner"],
+      "properties": {
+        "git_commit": {"type": "string"},
+        "runner": {"type": "string"},
+        "container_digest": {"type": "string"},
+        "adapter_versions": {"type": "object", "additionalProperties": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "media_type"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string"},
+          "media_type": {"type": "string"}
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
