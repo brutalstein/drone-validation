@@ -5,6 +5,7 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 option(SENTINEL_BUILD_TESTS "Build SENTINEL-TWIN tests" ON)
+option(SENTINEL_BUILD_EXAMPLES "Build SENTINEL-TWIN examples" ON)
 option(SENTINEL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 add_library(sentinel_core src/core/engine.cpp)
@@ -31,6 +32,11 @@ endif()
 
 add_executable(sentinel-cli src/cli/main.cpp)
 target_link_libraries(sentinel-cli PRIVATE sentinel::core)
+
+if(SENTINEL_BUILD_EXAMPLES)
+  add_executable(sentinel-custom-adapter-example examples/custom_adapter.cpp)
+  target_link_libraries(sentinel-custom-adapter-example PRIVATE sentinel::core)
+endif()
 
 if(SENTINEL_BUILD_TESTS)
   enable_testing()
