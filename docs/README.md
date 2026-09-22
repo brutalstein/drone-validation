@@ -28,6 +28,11 @@ This directory is the engineering source of truth. Files are numbered to give hu
 - 23-simulation-credibility.md — model validation and multi-fidelity policy
 - 24-ai-assurance.md — learning-enabled component evidence
 - 25-digital-thread-sysml.md — requirement-to-evidence digital thread
+- 26-versioning-compatibility.md — API/schema/adapter compatibility policy
+- 27-time-model.md — canonical experiment and clock-domain semantics
+- 28-data-governance.md — evidence retention, export and data classes
+- 29-risk-register.md — long-lived architecture risks and controls
+- 30-release-gates.md — engineering promotion criteria
 - adr/ — durable architecture decisions
 - reference/sources.md — primary public sources checked for the baseline
 
