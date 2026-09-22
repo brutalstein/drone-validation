@@ -1,0 +1,34 @@
+# SENTINEL-TWIN repository map for language models
+
+Project: autonomous-system validation, falsification, digital twin and assurance.
+Primary language: C++20.
+Documentation language: English.
+Core rule: core is technology-neutral; integrations are adapters.
+
+Read first:
+README.md
+AGENTS.md
+docs/00-vision.md
+docs/01-architecture.md
+docs/02-domain-model.md
+
+Key design:
+docs/03-scenario-engine.md
+docs/04-fault-injection.md
+docs/05-falsification-search.md
+docs/06-evidence-and-replay.md
+docs/07-sil-hil-vil.md
+docs/08-integrations.md
+docs/09-observability.md
+docs/10-security.md
+docs/11-safety-assurance.md
+docs/12-standards-roadmap.md
+docs/13-performance.md
+docs/14-testing.md
+docs/18-roadmap-2026-2036.md
+
+Machine contracts:
+schemas/scenario.schema.json
+schemas/evidence.schema.json
+
+Do not assume a ROS 2, PX4, Gazebo, DDS or Zenoh dependency exists in the core.

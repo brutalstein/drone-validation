@@ -1,0 +1,15 @@
+build/
+out/
+.cache/
+.vscode/
+.idea/
+compile_commands.json
+*.mcap
+*.bag
+*.db3
+*.log
+*.trace
+*.profraw
+*.profdata
+.DS_Store
+__pycache__/
