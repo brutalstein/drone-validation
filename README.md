@@ -28,15 +28,18 @@ This repository establishes the **v0 architecture contract and executable core**
 - adapter boundary for simulator / vehicle / middleware integrations
 - scenario and evidence schemas
 - fault model and assertions
+- deterministic machine-readable JSON evidence serialization
+- executable monotonic failure-boundary bisection search
+- installable CMake package and custom-adapter example
 - repeatable run / replay identity
-- initial falsification-search design
+- multi-strategy falsification-search roadmap
 - ROS 2 / PX4 / Gazebo integration plan
 - SIL → HIL → VIL maturity model
 - observability, security and software-supply-chain design
 - AI-agent-friendly documentation and contribution rules
 - 2026–2036 technology roadmap
 
-The first executable is intentionally a small reference kernel. Production integrations are added behind adapters without contaminating the core model.
+The repository contains a compilable reference kernel, deterministic tests, a working boundary-search primitive, evidence JSON serialization, and a custom-adapter example. Production robotics integrations remain separate adapters so they cannot contaminate the core experiment model.
 
 ## Target architecture
 
@@ -69,11 +72,12 @@ The first executable is intentionally a small reference kernel. Production integ
 Ubuntu 24.04 or another recent Linux environment with CMake >= 3.25 and a C++20 compiler:
 
 ```bash
-cmake -S . -B build -DSENTINEL_BUILD_TESTS=ON
+cmake -S . -B build -DSENTINEL_BUILD_TESTS=ON -DSENTINEL_BUILD_EXAMPLES=ON
 cmake --build build -j
 ctest --test-dir build --output-on-failure
 
 ./build/sentinel-cli
+./build/sentinel-custom-adapter-example
 ```
 
 The reference CLI executes an in-memory scenario and prints a deterministic evidence summary. Integration adapters will consume the same core contracts.
