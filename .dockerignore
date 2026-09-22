@@ -1,0 +1,11 @@
+build
+out
+.git
+.github
+.vscode
+.idea
+*.mcap
+*.bag
+*.db3
+*.log
+__pycache__
